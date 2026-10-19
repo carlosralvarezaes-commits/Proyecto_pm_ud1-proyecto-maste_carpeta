@@ -16,7 +16,7 @@ class TareasViewModel {
      * @param tarea La tarea que se va a agregar.
      */
     fun agregarTarea(tarea: Tarea) {
-        throw UnsupportedOperationException("A completar por el estudiante")
+        _uiState=_uiState.copy(tareas=_uiState.tareas+tarea)
     }
 
     /**
@@ -27,7 +27,14 @@ class TareasViewModel {
      * @param id El id de la tarea que se va a marcar como completada.
      */
     fun completarTarea(id: Int) {
-        throw UnsupportedOperationException("A completar por el estudiante")
+        _uiState=_uiState.copy(
+            tareas=_uiState.tareas.map
+            {
+                tarea -> if(tarea.id==id) tarea.copy(completada = true)else tarea
+            }
+        )
+
+
     }
     /**
      * Elimina una tarea de la lista de tareas.
@@ -37,7 +44,7 @@ class TareasViewModel {
      * @param id El id de la tarea que se va a eliminar.
      */
     fun eliminarTarea(id: Int) {
-        throw UnsupportedOperationException("A completar por el estudiante")
+        _uiState=_uiState.copy(tareas = _uiState.tareas.filter { it.id !=id })
     }
 
     /**
